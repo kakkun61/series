@@ -1,0 +1,23 @@
+data Account =
+    Account
+        { id :: Word
+        , identifier :: Text
+        , name :: Text
+        }
+
+data Series =
+    Series
+        { id :: Word
+        , title :: Text
+        , articles :: [Article]
+        }
+    | AnalyzingSeries
+        { id :: Word }
+
+data Article =
+    Article
+        { id :: Word
+        , title :: Text
+        , read :: Bool
+        , number :: Word
+        }
