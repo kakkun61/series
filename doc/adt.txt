@@ -1,12 +1,15 @@
+-- Model
+
 data Account =
     Account
         { id :: Word
         , identifier :: Text
         , name :: Text
+        , serieses :: [Series]
         }
 
-data Series =
-    Series
+data Series
+    = Series
         { id :: Word
         , title :: Text
         , articles :: [Article]
@@ -20,4 +23,27 @@ data Article =
         , title :: Text
         , read :: Bool
         , number :: Word
+        }
+
+-- DB Model
+
+data Account =
+    Account
+        { id :: Word
+        , identifier :: Text
+        , name :: Text
+        }
+
+data Series
+    = Series
+        { id :: Word
+        , title :: Text
+        }
+    | AnalyzingSeries
+        { id :: Word }
+
+data Following =
+    Following
+        { id :: Word
+        , accountId :: Word
         }
