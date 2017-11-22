@@ -1,4 +1,4 @@
--- Model
+-- App Model
 
 data Account =
     Account
@@ -13,6 +13,7 @@ data Series
         { id :: Word
         , title :: Text
         , articles :: [Article]
+        , uri :: Maybe URI
         }
     | AnalyzingSeries
         { id :: Word }
@@ -22,7 +23,7 @@ data Article =
         { id :: Word
         , title :: Text
         , read :: Bool
-        , number :: Word
+        , uri :: URI
         }
 
 -- DB Model
@@ -34,16 +35,43 @@ data Account =
         , name :: Text
         }
 
-data Series
-    = Series
+data Series =
+    Series
+        { id :: Word }
+
+data SeriesContent =
+    SeriesContent
         { id :: Word
+        , seriesId :: Word
         , title :: Text
         }
-    | AnalyzingSeries
-        { id :: Word }
+
+data SeriesUri =
+    SeriesUri
+        { id :: Word
+        , seriesId :: Word
+        , uri :: URI
+        }
 
 data Following =
     Following
         { id :: Word
         , accountId :: Word
+        , seriesId :: Word
         }
+
+data Article =
+    Article
+        { id :: Word
+        , title :: Text
+        , read :: Bool
+        }
+
+data Conataining =
+    Conataining
+        { id :: Word
+        , seriesId :: Word
+        , articleId :: Word
+        }
+
+-- IO Model

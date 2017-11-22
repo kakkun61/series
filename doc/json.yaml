@@ -1,0 +1,40 @@
+/series:
+  get:
+    parameters:
+    - page: word
+    reurn:
+    - series-list:
+      - series:
+          title: text
+          read-count: word
+          all-count: word
+  post:
+    parameters:
+    - title: text
+    - uri: text
+
+/series/{series-id}/article:
+  get:
+    parameters:
+    - series-id: word
+    - page: word
+    return:
+    - article-list:
+      - article:
+          title: text
+          read: bool
+
+/series/{series-id}/article/{article-id}:
+  get:
+    parameters:
+    - series-id: word
+    - aritcle-id: word
+    return:
+      article:
+        title: text
+        read: bool
+
+/series/new:
+  get:
+    parameters: []
+    return: []
