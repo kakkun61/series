@@ -12,6 +12,8 @@
     parameters:
     - title: text
     - uri: text
+    return:
+      redirect: /series/{series-id}
 
 /series/{series-id}/article:
   get:
@@ -23,12 +25,19 @@
       - article:
           title: text
           read: bool
+  post:
+    parameters:
+    - title: text
+    - real-article: uri
+    - volume: word
+    return:
+      redirect: /series/{series-id}/article/{article-index}
 
-/series/{series-id}/article/{article-id}:
+/series/{series-id}/article/{article-index}:
   get:
     parameters:
     - series-id: word
-    - aritcle-id: word
+    - aritcle-index: word
     return:
       article:
         title: text
