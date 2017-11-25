@@ -54,4 +54,29 @@ elm-stuff
 repl-temp-*
 
 
+### https://raw.githubusercontent.com/github/gitignore/df38222a85264028362b7487b90992fb7cf8fbc4/Haskell.gitignore
+
+dist
+dist-*
+cabal-dev
+*.o
+*.hi
+*.chi
+*.chs.h
+*.dyn_o
+*.dyn_hi
+.hpc
+.hsenv
+.cabal-sandbox/
+cabal.sandbox.config
+*.prof
+*.aux
+*.hp
+*.eventlog
+.stack-work/
+cabal.project.local
+.HTF/
+.ghc.environment.*
+
+
 dist/
