@@ -1,6 +1,6 @@
 module Main where
 
-import Lib
+import Series
 
 main :: IO ()
 main = startApp
