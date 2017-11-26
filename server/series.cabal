@@ -20,13 +20,18 @@ library
                      , Series.Type.Account
                      , Series.Type.Article
                      , Series.Type.Series
+                     , Series.Type.Relation.Account
+                     , DataSource
   build-depends:       base >= 4.7 && < 5
+                     , template-haskell
                      , aeson
                      , servant-server
                      , wai
                      , warp
                      , text
                      , network-uri
+                     , HDBC
+                     , HDBC-mysql
   default-language:    Haskell2010
 
 executable server
