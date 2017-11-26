@@ -27,6 +27,39 @@ data Article =
         , volume :: Word
         }
 
+-- Lazy App Model
+
+data Fetched a
+    = NotYet
+    | Done a
+    
+data Account =
+    Account
+        { id :: Word
+        , identifier :: Text
+        , name :: Text
+        , serieses :: Fetched [Series]
+        }
+
+data Series
+    = Series
+        { id :: Word
+        , title :: Text
+        , articles :: Fetched [Article]
+        , uri :: Maybe URI
+        }
+    | AnalyzingSeries
+        { id :: Word }
+
+data Article =
+    Article
+        { id :: Word
+        , title :: Text
+        , read :: Bool
+        , uri :: URI
+        , volume :: Word
+        }
+
 -- DB Model
 
 data Account =
