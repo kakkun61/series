@@ -77,3 +77,4 @@ fabric.properties
 
 
 cabal.config
+*.secret.bash
