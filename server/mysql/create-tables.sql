@@ -1,5 +1,5 @@
 # Run following.
-# mysql -u root < create-TABLEs.sql
+# mysql -u root < create-tables.sql
 
 USE `series`;
 

@@ -1,3 +1,6 @@
+{-# LANGUAGE RecordWildCards #-}
+{-# LANGUAGE TemplateHaskell #-}
+
 module DataSource
   ( connectDB
   , defineTable
@@ -16,7 +19,7 @@ import Text.Show (Show)
 import Data.Maybe (Maybe (Nothing))
 import System.Environment (getEnv)
 import Control.Applicative ((<$>))
-import Prelude (id)
+import GHC.Generics
 
 connectDB :: IO Connection
 connectDB = do
@@ -37,7 +40,7 @@ connectDB' = do
         mysqlGroup = Nothing
     mysqlHost     <- getEnv "SERIES_MYSQL_HOST"
     mysqlPort     <- read <$> getEnv "SERIES_MYSQL_PORT"
-    mysqlPassword <- getEnv "SERIES_MYSQL_PASSWORD"
+    mysqlPassword <- getEnv "MYSQL_PASSWORD"
     connectMySQL MySQLConnectInfo { .. }
 
 defineTable :: String -> Q [Dec]
@@ -48,4 +51,4 @@ defineTable tableName =
         driverMySQL
         "series"
         tableName
-        [''Show]
+        [''Show,  ''Generic]

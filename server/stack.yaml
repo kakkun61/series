@@ -37,6 +37,11 @@ resolver: lts-9.14
 # will not be run. This is useful for tweaking upstream packages.
 packages:
 - '.'
+#- location:
+#    git: git@github.com:kakkun61/hdbc-mysql.git
+#    commit: 254fc1f90338336b7e87190855918bbad4ac72b3
+#  extra-dep: true
+
 # Dependency packages to be pulled from upstream that are not in the resolver
 # (e.g., acme-missiles-0.3)
 extra-deps: []
