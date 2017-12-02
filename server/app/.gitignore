@@ -75,6 +75,6 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+### User
 
 cabal.config
-*.secret.bash
