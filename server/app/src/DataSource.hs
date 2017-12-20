@@ -16,31 +16,31 @@ import System.IO (IO)
 import Data.String (String)
 import Text.Read (read)
 import Text.Show (Show)
-import Data.Maybe (Maybe (Nothing))
-import System.Environment (getEnv)
+import Data.Maybe (Maybe (Nothing), fromMaybe)
+import System.Environment (getEnv, lookupEnv)
 import Control.Applicative ((<$>))
 import GHC.Generics
 
 connectDB :: IO Connection
 connectDB = do
-    let mysqlUnixSocket = ""
-        mysqlGroup = Nothing
-    mysqlHost     <- getEnv "SERIES_MYSQL_HOST"
-    mysqlPort     <- read <$> getEnv "SERIES_MYSQL_PORT"
-    mysqlDatabase <- getEnv "SERIES_MYSQL_DATABASE"
-    mysqlUser     <- getEnv "SERIES_MYSQL_USER"
-    mysqlPassword <- getEnv "SERIES_MYSQL_PASSWORD"
-    connectMySQL MySQLConnectInfo { .. }
+  let mysqlGroup = Nothing
+  mysqlHost       <- getEnv "SERIES_MYSQL_HOST"
+  mysqlPort       <- maybe 0 read <$> lookupEnv "SERIES_MYSQL_PORT"
+  mysqlUnixSocket <- fromMaybe "" <$> lookupEnv "SERIES_MYSQL_SOCKET"
+  mysqlDatabase   <- getEnv "SERIES_MYSQL_DATABASE"
+  mysqlUser       <- getEnv "SERIES_MYSQL_USER"
+  mysqlPassword   <- getEnv "SERIES_MYSQL_PASSWORD"
+  connectMySQL MySQLConnectInfo {..}
 
 connectDB' :: IO Connection
 connectDB' = do
     let mysqlUser = "root"
         mysqlDatabase = "INFORMATION_SCHEMA"
-        mysqlUnixSocket = ""
         mysqlGroup = Nothing
-    mysqlHost     <- getEnv "SERIES_MYSQL_HOST"
-    mysqlPort     <- read <$> getEnv "SERIES_MYSQL_PORT"
-    mysqlPassword <- getEnv "MYSQL_PASSWORD"
+    mysqlHost       <- getEnv "SERIES_MYSQL_HOST"
+    mysqlPort       <- read <$> getEnv "SERIES_MYSQL_PORT"
+    mysqlUnixSocket <- fromMaybe "" <$> lookupEnv "SERIES_MYSQL_SOCKET"
+    mysqlPassword   <- getEnv "MYSQL_PASSWORD"
     connectMySQL MySQLConnectInfo { .. }
 
 defineTable :: String -> Q [Dec]
